@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Scenario Rete Cisco</title>
+    <style>
+        /* Impostazioni di base */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: white;
+            background: linear-gradient(45deg, #ff007f, #ff1493);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            color: #fff;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 15px;
+            font-weight: 300;
+            color: #dcdcdc;
+        }
+
+        /* Contenitore principale */
+        .main-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 60px 20px;
+        }
+
+        /* Sezione immagine */
+        .image-container {
+            max-width: 100%;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.8s ease-out;
+        }
+
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Sezione descrizione */
+        .description {
+            max-width: 800px;
+            padding: 25px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .description h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .description p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            font-weight: 300;
+            color: #dcdcdc;
+        }
+
+        /* Bottone di upload */
+        .upload-button {
+            margin-top: 20px;
+            padding: 15px 25px;
+            font-size: 1.1rem;
+            color: white;
+            background-color: #ff1493;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .upload-button:hover {
+            background-color: #ff007f;
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .upload-button:focus {
+            outline: none;
+        }
+
+        /* Input file invisibile */
+        input[type="file"] {
+            display: none;
+        }
+
+        /* Transizione della descrizione */
+        .description:hover {
+            transform: translateY(-10px);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Scenario Rete Cisco negli Uffici</h1>
+    <p>Analisi e progettazione della rete Cisco per una gestione ottimale degli uffici.</p>
+</header>
+
+<div class="main-content">
+    <!-- Sezione Immagine -->
+    <div class="image-container">
+        <img id="uploadedImage" src="C:\Users\Studente\Desktop\Screenshot 2025-02-27 093838.png" alt="Scenario Cisco">
+    </div>
+
+    <!-- Descrizione -->
+    <div class="description">
+        <h2>Descrizione dello Scenario</h2>
+        <p>Questo scenario descrive una rete di uffici composta da quattro sedi collegate tramite tre router.
+         Ho iniziato assegnando ad ogni rete un indirizzo di rete:
+         Rete Gialla:  192.168.0.0
+         Rete Azzurra: 192.168.1.0
+         Rete Rosa: 192.168.2.0
+         Rete Rossa: 192.168.40.0
+         Successivamente ho attivato il DHCP su ogni server e  ho assegnato ad ogni server l'indirizzo di rete da cui iniziare:
+         Server 0: Default gateway 192.168.0.1
+                   dns Server: 8.8.8.8
+                   start ip address: 192.168.0.10
+                   subnet mask: 255.255.255.0
+            Il server 0 assegna gli indirizzi anche alla sottorete Azzurra quindi 
+                Default Gateway: 192.168.1.1
+                dns server 8.8.8
+                start ip address: 192.168.1.10
+                subnet mask: 255.255.255.0
+            Ora passiamo al Server 2
+            attiviamo il DHCP e assegniamo gli indirizzi:
+                Default Gateway: 102.168.40.1
+                dns server: 11.11.11.11
+                start ip address: 192.168.40.10
+                subnet mask: 255.255.255.0
+            Infine andiamo al server 3:
+                 Default Gateway: 192.168.2.1
+                 dns server:  10.10.10.10
+                 start ip address: 192.168.2.10
+                 subnet mask: 255.255.255.0
+            Ora passiamo alla configurazione dei Router.
+            Router 0:
+            FastEthernet0/0 : 192.168.0.1 subnet mask: 255.255.255.0
+            FastEthernet1/0 : 192.168.1.1 subnet mask: 255.255.255.0
+            Serial2/0 : 200.100.50.1 subnet mask: 255.255.255.0
+            Serial3/0 : 200.50.50.1 subnet mask: 255.255.255.0
+            Router 1:
+            FastEthernet0/0 : 192.168.2.1 subnet mask: 255.255.255.0
+            Serial2/0 : 200.50.50.2 subnet mask: 255.255.255.0
+            Serial3/0 : 200.150.50.1 subnet mask: 255.255.255.0
+            Router 2 :
+            FastEthernet0/0 : 192.168.40.1 subnet mask: 255.255.255.0
+            Serial2/0 : 200.100.50.1 subnet mask: 255.255.255.0
+            Serial3/0 : 200.150.50.2 subnet mask: 255.255.255.0
+            Successivamente ho configurato la VLAN sulla sottorete Gialla:
+            Switch> enable
+            Switch# configure terminal
+            Switch(config)# vlan 10
+            Switch(config-vlan)# name Sottorete1
+            Switch(config-vlan)# exit
+            Switch(config)# interface fastEthernet 0/1
+            Switch(config-if)# switchport mode access
+            Switch(config-if)# switchport access vlan 10
+            Switch(config-if)# exit
+            Switch(config)# interface fastEthernet 0/24
+            Switch(config-if)# switchport mode trunk
+            Switch(config-if)# switchport trunk allowed vlan 10
+            Switch(config-if)# exit
+        Infine ho fatto diverse simulazioni per provare tutto lo scenario e hanno avuto successo.
+        GRAZIE!!!!
+
+
+
+
+            
+
+             </p>
+    </div>
+
+    <!-- Bottone di upload -->
+    <button class="upload-button" onclick="document.getElementById('fileInput').click()">Carica Immagine</button>
+    <input type="file" id="fileInput" accept="image/*" onchange="updateImage(event)">
+</div>
+
+<script>
+    function updateImage(event) {
+        const file = event.target.files[0];
+        
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = document.getElementById('uploadedImage');
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
+
+</body>
+</html>
